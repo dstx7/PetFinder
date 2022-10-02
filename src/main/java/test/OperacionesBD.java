@@ -10,7 +10,7 @@ public class OperacionesBD {
 
     public static void main(String[] args) {
         listarMascota();
-        actualizarMascota(1,"Perro");
+        //actualizarMascota(1,"Perro");
         listarMascota();
     }
 
