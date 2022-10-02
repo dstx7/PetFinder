@@ -8,7 +8,13 @@ public interface IUsuarioController {
 
     public String register(String username, String contrasena,
             String nombre, String apellidos, String email, String telefono, String ciudad);
-    
-     public String pedir(String username);
+
+    public String pedir(String username);
+
+    public String modificar(String username, String nuevaContrasena,
+            String nuevoNombre, String nuevoApellido, String nuevoEmail,
+            String nuevoTelefono, String nuevoCiudad);
+
+    public String eliminar(String username);
 
 }

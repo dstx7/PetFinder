@@ -108,4 +108,59 @@ public class UsuarioController implements IUsuarioController {
 
         return "false";
     }
+    
+    @Override
+    public String modificar(String username, String nuevaContrasena,
+            String nuevoNombre, String nuevoApellido,
+            String nuevoEmail, String nuevoTelefono, String nuevoCiudad) {
+
+        DBConnection con = new DBConnection();
+
+        String sql = "Update usuario set contrasena = '" + nuevaContrasena
+                + "', nombre = '" + nuevoNombre + "', "
+                + "apellido = '" + nuevoApellido + "', email = '"
+                + nuevoEmail + "', telefono = '" + nuevoTelefono + "', ciudad = '"+ nuevoCiudad +"' ";
+
+
+        sql += " where username = '" + username + "'";
+
+        try {
+
+            Statement st = con.getConnection().createStatement();
+            st.executeUpdate(sql);
+
+            return "true";
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            con.desconectar();
+        }
+
+        return "false";
+
+    }
+    
+   
+    
+     public String eliminar(String username) {
+
+        DBConnection con = new DBConnection();
+
+        String sql1 = "Delete from encontrado where username = '" + username + "'";
+        String sql2 = "Delete from usuario where username = '" + username + "'";
+
+        try {
+            Statement st = con.getConnection().createStatement();
+            st.executeUpdate(sql1);
+            st.executeUpdate(sql2);
+
+            return "true";
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            con.desconectar();
+        }
+
+        return "false";
+    }
 }
